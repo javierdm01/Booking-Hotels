@@ -34,7 +34,7 @@ class UsuarioController {
         if($usuario){
             $_SESSION['obj']=base64_encode(serialize($usuario));
             setcookie('ultCone', $fechaActualFormato, time() + 300, '/');            
-            header("Location: ./pages/mostrarHoteles.php?controller=Usuario&action=comprobarCookie");
+            header("Location: ./pages/mostrarHoteles.php?controller=HabitacionHotel&action=mostrarTabla");
         }
         else{
             echo mensajeError('El usuario o la contraseña no son válidas.');

@@ -11,32 +11,14 @@
 
 <body>
     <div class="container mt-4">
-        <?php include $_SERVER['DOCUMENT_ROOT'].'/VideoClub/templates/headerStyle.php'; ?>
+        <?php include $_SERVER['DOCUMENT_ROOT'].'/Booking_Hotels/templates/headerStyle.php'; ?>
         <h1 class="text-center mb-5">Hoteles</h1>
         <!-- Caracteristicas de coches -->
         <table class="table">
-                <tr>
-                    <td class="w-25 border-0">
-                        <img src="../assets/img/hoteles/hotel1.webp" class="w-75 rounded ms-5" alt="Foto Hotel"/>
-                    </td>
-                    <td colspan="2" class="w-100 d-flex flex-column mt-1 ms-2 border-0" >
-                        <h2 class="ms-1">Hotel Madrid Palace</h2>
-                        <p class="ms-2">Descripcion del hotel aqui va</p>
-                        <ul class="list-unstyled ms-4">
-                            <li><input type="checkbox" name="hab" value="ON" /> Individual- Habitación individual con vistas a la ciudad <strong class="ms-1">69 €</strong></li>
-                            <li><input type="checkbox" name="hab" value="ON" /> Individual- Habitación individual con vistas a la ciudad <strong class="ms-1">69 €</strong></li>
-                            <li>
-                                <input type="checkbox" name="hab" value="ON" /> Individual- Habitación individual con vistas a la ciudad <strong class="ms-1">69 €</strong></li>
-                        </ul>
-
-                    </td>
-                    <td class="border-0">
-                        <div class="d-flex flex-column justify-content-end mt-5">
-                            <p class="mt-4">Desde: </p>
-                            <h3 class="text-danger fs-2"><strong>100€</strong></h3>
-                        </div>
-                    </td>
-                </tr>
+            <?php
+                session_start();
+                include '../frontcontroller.php';
+            ?>
         </table>
     </div>
     

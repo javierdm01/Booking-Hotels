@@ -44,7 +44,7 @@ function comprobarCookie() {
  */
 function comprobarInicio(){
     if(isset($_COOKIE['ultCone'])){
-        header('Location: ./pages/homePages.php');
+        header('Location: ./pages/mostrarHoteles.php?controller=HabitacionHotel&action=mostrarTabla');
     }
 }
 /**

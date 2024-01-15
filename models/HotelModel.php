@@ -1,7 +1,5 @@
 <?php
-
-include_once $_SERVER['DOCUMENT_ROOT'] . '/VideoClub/templates/mensajeError.php';
-
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Booking_Hotels/db/DB.php';
 /**
  * Clase Hotel
  */
@@ -47,7 +45,6 @@ class HotelModel {
      * Constructor de la clase Hotel
      */
     public function __construct() {
-        include_once $_SERVER['DOCUMENT_ROOT'] . '/VideoClub/db/DB.php';
 
         $this->bd = new DB();
         $this->pdo = $this->bd->getPDO();
@@ -133,90 +130,13 @@ class HotelModel {
      * 
      * @return array
      */
-    public function getPeliculas() {
+    public function getHoteles() {
         try {
-            $stmt = $this->pdo->prepare('SELECT * FROM peliculas');
+            $stmt = $this->pdo->prepare('SELECT * FROM hoteles');
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception) {
-            mensajeError('Se ha producido un error al obtener películas.');
-        }
-    }
-    /**
-     * Modificar Peliculas
-     *
-     * @param array $post Datos para modificar
-     */
-    public function modificarPelicula($post) {
-        try {
-            $sql = "UPDATE peliculas SET 
-                titulo = :titulo, 
-                genero = :genero, 
-                pais = :pais, 
-                anyo = :anyo, 
-                cartel = :cartel 
-                WHERE id = :id";
-            $stmt = $this->pdo->prepare($sql);
-
-            $stmt->bindParam(':id', $post['id']);
-            $stmt->bindParam(':titulo', $post['titulo']);
-            $stmt->bindParam(':genero', $post['genero']);
-            $stmt->bindParam(':pais', $post['pais']);
-            $stmt->bindParam(':anyo', $post['anyo']);
-            $stmt->bindParam(':cartel', $post['cartel']);
-
-            $stmt->execute();
-            mensajeCheck('Se ha modificado correctamente la pelicula');
-        } catch (Exception) {
-            mensajeError('Se ha producido un error al modificar la película.');
-        }
-    }
-    /**
-     * Insertar Peliculas
-     *
-     * @param array $post Datos para insertar Peliculas
-     */
-    public function insertarPelicula($post) {
-        try {
-            $sql = "INSERT INTO peliculas (id,titulo, genero, pais, anyo, cartel) 
-                VALUES (:id, :titulo, :genero, :pais, :anyo, :cartel)";
-
-            $stmt = $this->pdo->prepare($sql);
-
-            $stmt->bindParam(':id', $post['id']);
-            $stmt->bindParam(':titulo', $post['titulo']);
-            $stmt->bindParam(':genero', $post['genero']);
-            $stmt->bindParam(':pais', $post['pais']);
-            $stmt->bindParam(':anyo', $post['anyo']);
-            $stmt->bindParam(':cartel', $post['cartel']);
-
-            $stmt->execute();
-            mensajeCheck('Se ha insertado correctamente la pelicula');
-        } catch (Exception) {
-            mensajeError('Se ha producido un error al insertar la película.');
-        }
-
-
-        
-    }
-    /**
-     * Eliminar Peliculas
-     *
-     * @param array $id identificador de la pelicula a eliminar
-     */
-    public function eliminarPelicula($id) {
-
-        try {
-            $sql2 = "DELETE FROM peliculas WHERE id = :id";
-
-            $stmt2 = $this->pdo->prepare($sql2);
-
-            $stmt2->bindParam(':id', $id);
-
-            $stmt2->execute();
-            mensajeCheck('Se ha eliminado correctamente');
-        } catch (Exception) {
-            mensajeError('Se ha producido un error al eliminar las peliculas');
+            mensajeError('Se ha producido un error al obtener las hoteles.');
         }
     }
 }

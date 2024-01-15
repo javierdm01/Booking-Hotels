@@ -1,6 +1,6 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT'] . '/VideoClub/db/DB.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Booking_Hotels/db/DB.php';
 /**
  * Clase Habitacion 
  */
@@ -100,6 +100,14 @@ class HabitacionModel {
         $this->descripcion = $descripcion;
     }
 
-        
-   
+    public function getHabitaciones($hotel) {
+        try {
+            $stmt = $this->pdo->prepare('SELECT * FROM habitaciones where id_hotel=:hotelId');
+            $stmt->bindParam(':hotelId', $hotel['id'], PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception) {
+            mensajeError('Se ha producido un error al obtener las hoteles.');
+        }
+    }
 }

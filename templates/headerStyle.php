@@ -16,9 +16,9 @@
     </button>
 
     <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+    <div class="collapse navbar-collapse w-75 me-5 pe-5" id="navbarSupportedContent">
       <!-- Navbar brand -->
-      <a class="navbar-brand mt-2 mt-lg-0" href="./homepages.php">
+      <a class="navbar-brand mt-2 mt-lg-0" href="./mostrarPeliculas.php">
         <img
             src="../assets/img/logo.png"
           height="45"
@@ -27,15 +27,12 @@
         >
       </a>
       <!-- Left links -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto pe-5">
         <li class="nav-item">
-            <a class="nav-link" href="./homepages.php">Inicio</a>
+            <a class="nav-link" href="./mostrarPeliculas.php">Hoteles</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="./mostrarPeliculas.php">Peliculas</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="./enviarMail.php">E-Mail</a>
+            <a class="nav-link" href="./mostrarReservas.php">Reservas</a>
         </li>
       </ul>
       <!-- Left links -->
