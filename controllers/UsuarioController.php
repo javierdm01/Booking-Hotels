@@ -2,6 +2,7 @@
 include_once $_SERVER['DOCUMENT_ROOT'].'/Booking_Hotels/view/UsuarioView.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'\Booking_Hotels\models\UsuarioModel.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'\Booking_Hotels\templates\mensajeError.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'\Booking_Hotels\libraries\functions.php';
 /**
  * Clase UsuarioController
  */
@@ -32,10 +33,8 @@ class UsuarioController {
         $fechaActualFormato = $fechaActual->format('Y-m-d H:i:s');
         if($usuario){
             $_SESSION['obj']=base64_encode(serialize($usuario));
-            setcookie('ultCone', $fechaActualFormato, time() + 300, '/');
-            $this->model->comprobarLogs();
-            
-            header("Location: ./pages/homepages.php");
+            setcookie('ultCone', $fechaActualFormato, time() + 300, '/');            
+            header("Location: ./pages/mostrarHoteles.php?controller=Usuario&action=comprobarCookie");
         }
         else{
             echo mensajeError('El usuario o la contraseña no son válidas.');
@@ -47,6 +46,12 @@ class UsuarioController {
      * 
      */
     public function mostrarFormulario() {
-       $this->view  ->mostrarLogin();
+        if (isset($_GET['crr'])) {
+            cerrarSesion($_SESSION);
+        }
+        comprobarInicio();
+        $this->view->mostrarLogin();
     }
+    
+    
 }

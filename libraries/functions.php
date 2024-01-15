@@ -15,10 +15,21 @@ function enviarMail() {
     }
 }
 /**
+ * Inicializa la página con el usuario
+ * @param arrays $cookie valores de la cookie
+ */
+function inicializarPagina(){
+        //Si la cookie no está activa, directamente te redirige al index
+        comprobarCookie($_COOKIE);
+        $usu = (unserialize(base64_decode($_SESSION['obj'])));
+        
+        return $usu;
+    }
+/**
  * Comprueba si la cookie no existe o la renueva si existe
  * @param arrays $cookie valores de la cookie
  */
-function comprobarCookie($cookie) {
+function comprobarCookie() {
     if(isset($_COOKIE['ultCone']) && isset($_SESSION['obj'])){
         $fechaActual=new DateTime();
         $fechaActualFormato = $fechaActual->format('Y-m-d H:i:s');

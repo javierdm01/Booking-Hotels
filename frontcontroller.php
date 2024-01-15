@@ -7,6 +7,7 @@ define('ACCION_DEFECTO', 'mostrarFormulario');
 define('CONTROLADOR_DEFECTO', 'Usuario');
 
 
+
 function lanzarAccion($controllerObj){
     
     if(isset($_GET["action"]) && method_exists($controllerObj, $_GET["action"])){
