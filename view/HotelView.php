@@ -11,6 +11,7 @@ class HotelView {
                 <td colspan="2" class="w-100 d-flex flex-column mt-1 ms-2 border-0" >
                     <h2 class="ms-1">'.$hoteles['nombre'].'</h2>
                     <p class="ms-2">'.$hoteles['descripcion'].'</p>'
-            . '<ul class="list-unstyled ms-4">';
+            . '<form action="./mostrarReservas.php?controller=Reserva&action=crearReserva" method="post">'
+                . '<ul class="list-unstyled ms-4">';
     }
 }

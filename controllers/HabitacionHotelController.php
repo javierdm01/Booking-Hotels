@@ -3,9 +3,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/Booking_Hotels/view/HabitacionView.php'
 include_once $_SERVER['DOCUMENT_ROOT'].'/Booking_Hotels/models/HabitacionModel.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Booking_Hotels/view/HotelView.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Booking_Hotels/models/HotelModel.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/Booking_Hotels/db/DB.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'\Booking_Hotels\templates\mensajeError.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'\Booking_Hotels\libraries\functions.php';
 /**
- * Clase ActorController
+ * Clase HabitacionHotelController
+ * Este controlador es un intermediario entre Habitacion y Hotel
  */
 class HabitacionHotelController {
 
@@ -16,7 +18,7 @@ class HabitacionHotelController {
     private $viewHotel;
 
     /**
-     * Constructor de la clase ActorController
+     * Constructor de la clase Habitacion-Hotel Controller
      */
     public function __construct() {
         $this->modelHabitacion= new HabitacionModel();
@@ -24,6 +26,9 @@ class HabitacionHotelController {
         $this->viewHabitacion=new HabitacionView();
         $this->viewHotel=new HotelView();
     }
+    /**
+     * Esta funcion devuelve una tabla de hoteles con sus respectivas habitaciones
+     */
     public function mostrarTabla(){
         $hoteles=$this->modelHotel->getHoteles();
         for ($i = 0; $i < count($hoteles); $i++) {

@@ -42,7 +42,8 @@ class UsuarioController {
         }
     }
     /**
-     * Controlador para mostrar el Login
+     * Controlador para mostrar el Login y comrprobar si se ha iniciado
+     * sesion hace menos de 10 mins
      * 
      */
     public function mostrarFormulario() {

@@ -1,34 +1,23 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/VideoClub/models/Actuan.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Booking_Hotels/models/HotelModel.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Booking_Hotels/view/HotelView.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'\Booking_Hotels\templates\mensajeError.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'\Booking_Hotels\libraries\functions.php';
 /**
- * Clase ActuanController
+ * Clase HotelController
  */
-class ActuanController {
+class HotelController {
 
     // Obtiene una instancia del modelo y de la vista de tareas
     private $model;
+    private $view;
 
     /**
-     * Constructor de la clase ActorController
+     * Constructor de la clase HotelController
      */
     public function __construct() {
-        $this->model = new Actuan();
+        $this->model = new HotelModel();
+        $this->view= new HotelView();
     }
 
-    /**
-     * Controlar para eliminar en la tabla actuan
-     * 
-     * @param number $id identificador de pelicula
-     */
-    public function eliminarActuan($id) {
-        $this->model->eliminarActuacion($id);
-    }
-    /**
-     * Controlar para insertar en la tabla actuan
-     * 
-     * @param array $post datos de la insercción
-     */
-    public function insertarActuan($post){
-        $this->model->insertarActuacion($post);
-    }
 }
