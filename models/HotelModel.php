@@ -33,7 +33,7 @@ class HotelModel {
      */
     private $descripcion;
     /**
-     * @var img foto del hotel
+     * @var img foto del hotel      
      */
     private $foto;
     

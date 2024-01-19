@@ -32,7 +32,7 @@ class UsuarioController {
         $fechaActual=new DateTime();
         $fechaActualFormato = $fechaActual->format('Y-m-d H:i:s');
         if($usuario){
-            $_SESSION['obj']=base64_encode(serialize($usuario));
+            $_SESSION['obj']=$usuario;
             setcookie('ultCone', $fechaActualFormato, time() + 300, '/');            
             header("Location: ./pages/mostrarHoteles.php?controller=HabitacionHotel&action=mostrarTabla");
         }

@@ -54,7 +54,6 @@ function comprobarInicio(){
  */
 function cerrarSesion(&$sesion) {
     $sesion = array();
-    session_start();
     setcookie("ultCone", '', time() - 3600, "/");
     setcookie(session_name(), '', time() - 3600, "/");
     unset($_SESSION['obj']);

@@ -5,109 +5,111 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/Booking_Hotels/db/DB.php';
  * Clase Usuario
  */
 class UsuarioModel {
-
     /**
-     * @var number identificador de Usuario
+     * @var int identificador de Usuario
      */
     private $id;
     /**
-     * @var varchar nombre Usuario
+     * @var string nombre Usuario
      */
     private $nombre;
     /**
-     * @var varchar contraseña Usuario
+     * @var string contraseña Usuario
      */
-    private $apellido;
+    private $contraseña;
     /**
-     * @var date fecha registro
+     * @var string fecha registro
      */
-    private $fotografia;
+    private $fecha_registro;
     /**
-     * @var number numero de rol
+     * @var int numero de rol
      */
     private $rol;
-    
-    
-    //Conexion Atributtes
+
+    // Atributos de conexión
     private $bd;
     private $pdo;
 
     /**
-     * Constructor de la clase Actor
+     * Constructor de la clase Usuario
      */
     public function __construct() {
+
         $this->bd = new DB();
         $this->pdo = $this->bd->getPDO();
-    }
-    /**
-     * Destructor de la clase Actor
-     */
-     public function __destruct() {
-        $this->bd->closePDO();
     }
     
     /**
      * Getters and setters
      */
-    public function getId() {
+    public function getId(): int {
         return $this->id;
     }
 
-    public function getNombre() {
+    public function getNombre(): string {
         return $this->nombre;
     }
 
-    public function getApellido() {
-        return $this->apellido;
+    public function getContraseña(): string {
+        return $this->contraseña;
     }
 
-    public function getFotografia() {
-        return $this->fotografia;
+    public function getFecha_registro(): string {
+        return $this->fecha_registro;
     }
 
-    public function setId($id): void {
+    public function getRol(): int {
+        return $this->rol;
+    }
+
+    public function setId(int $id): void {
         $this->id = $id;
     }
 
-    public function setNombre($nombre): void {
+    public function setNombre(string $nombre): void {
         $this->nombre = $nombre;
     }
 
-    public function setApellido($apellido): void {
-        $this->apellido = $apellido;
+    public function setContraseña(string $contraseña): void {
+        $this->contraseña = $contraseña;
     }
 
-    public function setFotografia($fotografia): void {
-        $this->fotografia = $fotografia;
+    public function setFecha_registro(string $fecha_registro): void {
+        $this->fecha_registro = $fecha_registro;
     }
+
+    public function setRol(int $rol): void {
+        $this->rol = $rol;
+    }
+
     /**
-     * Obtener Actores todos los actores
-     *
-     * 
-     * @return array
+     * Destructor de la clase Usuario
      */
-     /**
+    public function __destruct() {
+        $this->bd->closePDO();
+    }
+
+    /**
      * Obtener todos los usuarios
      *
-     * 
      * @return array
      */
     public function getUsuarios() {
         try {
             $stmt = $this->pdo->prepare('SELECT * FROM usuarios');
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (Exception) {
+            $stmt->execute(); 
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'UsuarioModel');
+        } catch (Exception $e) {
             mensajeError('Se ha producido un error al obtener usuarios');
         }
     }
+
     /**
-     * Comprobar inicio de Sesion
+     * Comprobar inicio de Sesión
      *
-     * @param String $username nombre de usuario
-     * @param String $password contraseña codificiada
-     * 
-     * @return array usuario
+     * @param string $username nombre de usuario
+     * @param string $password contraseña codificada
+     * @return UsuarioModel|array|null
      */
     public function comprobarLogin($username, $password) {
         try {
@@ -117,32 +119,11 @@ class UsuarioModel {
 
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->bindParam(':password', $password, PDO::PARAM_STR);
-
-            $stmt->execute();
-
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            $stmt->setFetchMode( PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'UsuarioModel');
+            $stmt->execute(); 
+            return $stmt->fetchAll();
         } catch (Exception) {
             mensajeError('Se ha producido un error al comprobar usuarios');
         }
     }
-    /**
-     * Crear tabla log si no existe
-     *
-     */
-    public function comprobarLogs() {
-        try {
-            $sql = "CREATE TABLE IF NOT EXISTS logs (mensaje varchar(255))";
-
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
-        } catch (Exception) {
-            mensajeError('Se ha producido un error al crearLogs');
-        }
-    }
-    /**
-     * Enviar logs de acceso
-     *
-     * @param String $mensaje mensaje para guardar en log
-     * 
-     */
 }

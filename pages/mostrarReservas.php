@@ -19,28 +19,67 @@
             ?>
             <!-- MENÚ DE NAVEGACIÓN -->
             <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action"><a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">Habitación Individual - </a>  </button>
-                
+                <button type="button" class="list-group-item list-group-item-action"><a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample"> <strong>Hotel Madrid Luxary</strong> </a>  </button>
                 <div class="collapse" id="collapseExample1">
-                    <table border="1">
-                        <thead>
+                    <table border="1" class="w-100 text-center">
+                        <thead class="border border-dark border-bottom">
                             <tr>
-                                <th>Codigo Reserva</th>
+                                <th>Cod Reserva</th>
+                                <th>Cod Habitación</th>
                                 <th>Tipo Habitación</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th>Descripcion Habitación</th>
+                                <th>Fecha de entrada</th>
+                                <th>Fecha de salida</th>
+                                <th>Precio</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                                <td>1</td>
+                                <td>121</td>
+                                <td>Individual</td>
+                                <td>Habitación individual en madrid</td>
+                                <td>12/12/23</td>
+                                <td>14/12/23</td>
+                                <td>75€</td>
+                            </tr>
+                            <tr>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action"><a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample"> <strong>Hotel Madrid Luxary</strong> </a>  </button>
+                <div class="collapse" id="collapseExample2">
+                    <table border="1" class="w-100 text-center">
+                        <thead class="border border-dark border-bottom">
+                            <tr>
+                                <th>Cod Reserva</th>
+                                <th>Cod Habitación</th>
+                                <th>Tipo Habitación</th>
+                                <th>Descripcion Habitación</th>
+                                <th>Fecha de entrada</th>
+                                <th>Fecha de salida</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>121</td>
+                                <td>Individual</td>
+                                <td>Habitación individual en madrid</td>
+                                <td>12/12/23</td>
+                                <td>14/12/23</td>
+                                <td>75€</td>
                             </tr>
                             <tr>
                                 <td></td>
