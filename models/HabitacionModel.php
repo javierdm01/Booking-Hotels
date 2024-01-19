@@ -5,29 +5,17 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/Booking_Hotels/db/DB.php';
  * Clase Habitacion 
  */
 class HabitacionModel {
-     /**
-     * @var number identificador de la habitacion
-     */
+
     private $id;
-    /**
-     * @var number id hotel, relacion
-     */
-    private $idHotel;
-    /**
-     * @var number numero de habitacion
-     */
-    private $numHabitacion;
-    /**
-     * @var varchar tipo de habitacion
-     */
+
+    private $id_hotel;
+
+    private $num_habitacion;
+
     private $tipo;
-    /**
-     * @var float precio de la habitacion
-     */
+
     private $precio;
-    /**
-     * @var text descripcion de la habitacion
-     */
+
     private $descripcion;
     
     //Conexion Atributtes
@@ -51,63 +39,65 @@ class HabitacionModel {
     /**
      * Getters and setters
      */
-
-    public function getId(): number {
+    public function getId() {
         return $this->id;
     }
 
-    public function getIdHotel(): number {
-        return $this->idHotel;
+    public function getId_hotel() {
+        return $this->id_hotel;
     }
 
-    public function getNumHabitacion(): number {
-        return $this->numHabitacion;
+    public function getNum_habitacion() {
+        return $this->num_habitacion;
     }
 
-    public function getTipo(): varchar {
+    public function getTipo() {
         return $this->tipo;
     }
 
-    public function getPrecio(): float {
+    public function getPrecio() {
         return $this->precio;
     }
 
-    public function getDescripcion(): text {
+    public function getDescripcion() {
         return $this->descripcion;
     }
 
-    public function setId(number $id): void {
+    public function setId($id) {
         $this->id = $id;
     }
 
-    public function setIdHotel(number $idHotel): void {
-        $this->idHotel = $idHotel;
+    public function setId_hotel($id_hotel) {
+        $this->id_hotel = $id_hotel;
     }
 
-    public function setNumHabitacion(number $numHabitacion): void {
-        $this->numHabitacion = $numHabitacion;
+    public function setNum_habitacion($num_habitacion) {
+        $this->num_habitacion = $num_habitacion;
     }
 
-    public function setTipo(varchar $tipo): void {
+    public function setTipo($tipo) {
         $this->tipo = $tipo;
     }
 
-    public function setPrecio(float $precio): void {
+    public function setPrecio($precio) {
         $this->precio = $precio;
     }
 
-    public function setDescripcion(text $descripcion): void {
+    public function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
     }
 
+    
     public function getHabitaciones($hotel) {
+        $idHotel=$hotel->getId();
         try {
             $stmt = $this->pdo->prepare('SELECT * FROM habitaciones where id_hotel=:hotelId');
-            $stmt->bindParam(':hotelId', $hotel['id'], PDO::PARAM_STR);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':hotelId', $idHotel);
+            $stmt->setFetchMode( PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'HabitacionModel');
+            $stmt->execute(); 
+            return $stmt->fetchAll();
         } catch (Exception) {
-            mensajeError('Se ha producido un error al obtener las hoteles.');
+            mensajeError('Se ha producido un error al obtener los hoteles.');
         }
     }
 }

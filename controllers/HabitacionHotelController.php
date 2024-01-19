@@ -34,11 +34,11 @@ class HabitacionHotelController {
         for ($i = 0; $i < count($hoteles); $i++) {
             $habitaciones=$this->modelHabitacion->getHabitaciones($hoteles[$i]);
             $this->viewHotel->mostratHoteles($hoteles[$i]);
-            $valorMin=$habitaciones[0]['precio'];
+            $valorMin=$habitaciones[0]->getPrecio();
             for ($j = 0; $j < count($habitaciones); $j++) {
                 $this->viewHabitacion->mostrarHabitaciones($habitaciones[$j]);
-                if($habitaciones[$j]['precio']<$valorMin){
-                    $valorMin=$habitaciones[$j]['precio'];
+                if($habitaciones[$j]->getPrecio()<$valorMin){
+                    $valorMin=$habitaciones[$j]->getPrecio();
                 }
             }
             $this->viewHabitacion->mostrarPrecioHabitaciones($valorMin);

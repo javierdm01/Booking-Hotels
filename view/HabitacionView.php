@@ -3,7 +3,7 @@
 class HabitacionView {
 
     function mostrarHabitaciones($habitaciones) {
-    echo '<li><input type="checkbox" name="check[]" value="'.$habitaciones['id'].'" /> '.$habitaciones['tipo'].'- '.$habitaciones['descripcion'].' <strong class="ms-1">'.$habitaciones['precio'].' €</strong></li>
+    echo '<li><input type="checkbox" name="check[]" value="'.$habitaciones->getId().'" /> '.$habitaciones->getTipo().'- '.$habitaciones->getDescripcion().' <strong class="ms-1">'.$habitaciones->getPrecio().' €</strong></li>
         ';
     }
 

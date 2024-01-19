@@ -59,67 +59,67 @@ class HotelModel {
     /**
      * Getters and setters
      */
-    public function getId(): number {
+    public function getId() {
         return $this->id;
     }
 
-    public function getNombre(): varchar {
+    public function getNombre() {
         return $this->nombre;
     }
 
-    public function getDireccion(): varchar {
+    public function getDireccion() {
         return $this->direccion;
     }
 
-    public function getCiudad(): varchar {
+    public function getCiudad() {
         return $this->ciudad;
     }
 
-    public function getPais(): varchar {
+    public function getPais() {
         return $this->pais;
     }
 
-    public function getNum_habitaciones(): number {
+    public function getNum_habitaciones() {
         return $this->num_habitaciones;
     }
 
-    public function getDescripcion(): text {
+    public function getDescripcion() {
         return $this->descripcion;
     }
 
-    public function getFoto(): img {
+    public function getFoto() {
         return $this->foto;
     }
 
-    public function setId(number $id): void {
+    public function setId($id) {
         $this->id = $id;
     }
 
-    public function setNombre(varchar $nombre): void {
+    public function setNombre($nombre) {
         $this->nombre = $nombre;
     }
 
-    public function setDireccion(varchar $direccion): void {
+    public function setDireccion($direccion) {
         $this->direccion = $direccion;
     }
 
-    public function setCiudad(varchar $ciudad): void {
+    public function setCiudad($ciudad) {
         $this->ciudad = $ciudad;
     }
 
-    public function setPais(varchar $pais): void {
+    public function setPais($pais) {
         $this->pais = $pais;
     }
 
-    public function setNum_habitaciones(number $num_habitaciones): void {
+    public function setNum_habitaciones($num_habitaciones) {
         $this->num_habitaciones = $num_habitaciones;
     }
 
-    public function setDescripcion(text $descripcion): void {
+    public function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
     }
 
-    public function setFoto(img $foto): void {
+    public function setFoto($foto) {
         $this->foto = $foto;
     }
 
@@ -133,8 +133,9 @@ class HotelModel {
     public function getHoteles() {
         try {
             $stmt = $this->pdo->prepare('SELECT * FROM hoteles');
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->setFetchMode( PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'HotelModel');
+            $stmt->execute(); 
+            return $stmt->fetchAll();
         } catch (Exception) {
             mensajeError('Se ha producido un error al obtener las hoteles.');
         }

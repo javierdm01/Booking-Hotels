@@ -14,23 +14,23 @@ class ReservaModel{
     /**
      * @var number identificador de Usuario
      */
-    private $idUsuario;
+    private $id_usuario;
     /**
      * @var number identificador de Hotel
      */
-    private $idHotel;
+    private $id_hotel;
     /**
      * @var number identificador de Habitacion
      */
-    private $idHabitacion;
+    private $id_habitacion;
     /**
      * @var date fecha de entrada
      */
-    private $fechaEntrada;
+    private $fecha_entrada;
     /**
      * @var date fecha de salida
      */
-    private $fechaSalida;
+    private $fecha_salida;
     
     //Conexion Atributtes
     private $db;
@@ -57,105 +57,65 @@ class ReservaModel{
         return $this->id;
     }
 
-    public function getIdUsuario(): number {
-        return $this->idUsuario;
+    public function getId_usuario(): number {
+        return $this->id_usuario;
     }
 
-    public function getIdHotel(): number {
-        return $this->idHotel;
+    public function getId_hotel(): number {
+        return $this->id_hotel;
     }
 
-    public function getIdHabitacion(): number {
-        return $this->idHabitacion;
+    public function getId_habitacion(): number {
+        return $this->id_habitacion;
     }
 
-    public function getFechaEntrada(): date {
-        return $this->fechaEntrada;
+    public function getFecha_entrada(): date {
+        return $this->fecha_entrada;
     }
 
-    public function getFechaSalida(): date {
-        return $this->fechaSalida;
+    public function getFecha_salida(): date {
+        return $this->fecha_salida;
     }
 
     public function setId(number $id): void {
         $this->id = $id;
     }
 
-    public function setIdUsuario(number $idUsuario): void {
-        $this->idUsuario = $idUsuario;
+    public function setId_usuario(number $id_usuario): void {
+        $this->id_usuario = $id_usuario;
     }
 
-    public function setIdHotel(number $idHotel): void {
-        $this->idHotel = $idHotel;
+    public function setId_hotel(number $id_hotel): void {
+        $this->id_hotel = $id_hotel;
     }
 
-    public function setIdHabitacion(number $idHabitacion): void {
-        $this->idHabitacion = $idHabitacion;
+    public function setId_habitacion(number $id_habitacion): void {
+        $this->id_habitacion = $id_habitacion;
     }
 
-    public function setFechaEntrada(date $fechaEntrada): void {
-        $this->fechaEntrada = $fechaEntrada;
+    public function setFecha_entrada(date $fecha_entrada): void {
+        $this->fecha_entrada = $fecha_entrada;
     }
 
-    public function setFechaSalida(date $fechaSalida): void {
-        $this->fechaSalida = $fechaSalida;
+    public function setFecha_salida(date $fecha_salida): void {
+        $this->fecha_salida = $fecha_salida;
     }
 
     
     /**
-     * Devuelve un array con todas los valores de la tabla Actuan
+     * Devuelve un array con todas los valores de la tabla Reservas
      *
      * @return array
      */
-    public function getActuaciones(){
+    public function getReservas(){
         try {
-            $stmt= $this->pdo->prepare('SELECT * FROM actuan');
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC); 
-        } catch (Exception $exc) {
-            mensajeError('Se ha producido un error al obtener la tabla Actuan');
-        }
-    }
-    
-    /**
-     * Hace una insercción en la tabla Actuan 
-     * 
-     *@param array $post Datos para la insercción.
-     */
-    public function insertarActuacion($post){
-        try {
-            for ($i = 0; $i < count($post['actores']); $i++) {
-                $sql = "INSERT INTO actuan (idPelicula, idActor) 
-                    VALUES (:idPelicula, :idActor)";
-                $stmt = $this->pdo->prepare($sql);
-                $stmt->bindParam(':idPelicula', $post['id']);
-                $stmt->bindParam(':idActor', $post['actores'][$i]);
-                $stmt->execute();
-            }
-        } catch (Exception $exc) {
-            mensajeError('Se ha producido un error al insertar los actores en la pelicula');
-        }
-         
-        
-    }
-    
-    /**
-     * Actualiza en la tabla Actuan 
-     *
-     * @param number $id identificador de la Pelicula
-     */
-    public function eliminarActuacion($id) {
-        try {
-            $sql = "DELETE FROM actuan WHERE idPelicula = :id";
-
-            $stmt = $this->pdo->prepare($sql);
-
-            $stmt->bindParam(':id', $id);
-
-            $stmt->execute();
-
+            $stmt= $this->pdo->prepare('SELECT * FROM reservas');
+            $stmt->setFetchMode( PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'ReservaModel');
+            $stmt->execute(); 
+            return $stmt->fetchAll();
         } catch (Exception) {
-            mensajeError('Se ha producido un error al eliminar las peliculas');
+            mensajeError('Se ha producido un error al obtener las reservas.');
         }
     }
+    
 }
