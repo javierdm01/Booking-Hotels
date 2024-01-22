@@ -1,5 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/VideoClub/db/DB.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Booking_Hotels/db/DB.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Booking_Hotels/models/HotelModel.php';
 
 /**
  * Clase Reserva
@@ -53,51 +54,51 @@ class ReservaModel{
     /**
      * Getters and setters
      */
-    public function getId(): number {
+    public function getId() {
         return $this->id;
     }
 
-    public function getId_usuario(): number {
+    public function getId_usuario() {
         return $this->id_usuario;
     }
 
-    public function getId_hotel(): number {
+    public function getId_hotel() {
         return $this->id_hotel;
     }
 
-    public function getId_habitacion(): number {
+    public function getId_habitacion() {
         return $this->id_habitacion;
     }
 
-    public function getFecha_entrada(): date {
+    public function getFecha_entrada() {
         return $this->fecha_entrada;
     }
 
-    public function getFecha_salida(): date {
+    public function getFecha_salida() {
         return $this->fecha_salida;
     }
 
-    public function setId(number $id): void {
+    public function setId($id) {
         $this->id = $id;
     }
 
-    public function setId_usuario(number $id_usuario): void {
+    public function setId_usuario($id_usuario) {
         $this->id_usuario = $id_usuario;
     }
 
-    public function setId_hotel(number $id_hotel): void {
+    public function setId_hotel($id_hotel) {
         $this->id_hotel = $id_hotel;
     }
 
-    public function setId_habitacion(number $id_habitacion): void {
+    public function setId_habitacion($id_habitacion) {
         $this->id_habitacion = $id_habitacion;
     }
 
-    public function setFecha_entrada(date $fecha_entrada): void {
+    public function setFecha_entrada($fecha_entrada) {
         $this->fecha_entrada = $fecha_entrada;
     }
 
-    public function setFecha_salida(date $fecha_salida): void {
+    public function setFecha_salida($fecha_salida) {
         $this->fecha_salida = $fecha_salida;
     }
 
@@ -107,9 +108,11 @@ class ReservaModel{
      *
      * @return array
      */
-    public function getReservas(){
+    public function getReservas($hoteles){
+        $idHotel=$hoteles->getId();
         try {
-            $stmt= $this->pdo->prepare('SELECT * FROM reservas');
+            $stmt= $this->pdo->prepare('SELECT * FROM reservas where id_hotel=:hotelId');
+            $stmt->bindParam(':hotelId', $idHotel);
             $stmt->setFetchMode( PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'ReservaModel');
             $stmt->execute(); 
             return $stmt->fetchAll();

@@ -3,6 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'\Booking_Hotels\models\UsuarioModel.php'
 include_once $_SERVER['DOCUMENT_ROOT'].'\Booking_Hotels\controllers\UsuarioController.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'\Booking_Hotels\view\UsuarioView.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'\Booking_Hotels\controllers\HabitacionHotelController.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'\Booking_Hotels\controllers\ReservaHotelHabitacionUsuarioController.php';
 
 define('ACCION_DEFECTO', 'mostrarFormulario');
 define('CONTROLADOR_DEFECTO', 'Usuario');

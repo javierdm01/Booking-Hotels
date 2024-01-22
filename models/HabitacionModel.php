@@ -87,17 +87,28 @@ class HabitacionModel {
         $this->descripcion = $descripcion;
     }
 
-    
     public function getHabitaciones($hotel) {
         $idHotel=$hotel->getId();
         try {
-            $stmt = $this->pdo->prepare('SELECT * FROM habitaciones where id_hotel=:hotelId');
+            $stmt = $this->pdo->prepare('SELECT * FROM habitaciones where id_hotel =:hotelId');
             $stmt->bindParam(':hotelId', $idHotel);
+            $stmt->setFetchMode( PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'HabitacionModel');
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception) {
+            mensajeError('Se ha producido un error al obtener las habitaciones.');
+        }
+    }
+    public function obtenerHabitaciones($reserva) {
+        $idReserva=$reserva->getId_habitacion();
+        try {
+            $stmt = $this->pdo->prepare('SELECT * FROM habitaciones where id=:habitacion_id');
+            $stmt->bindParam(':habitacion_id', $idReserva);
             $stmt->setFetchMode( PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'HabitacionModel');
             $stmt->execute(); 
             return $stmt->fetchAll();
         } catch (Exception) {
-            mensajeError('Se ha producido un error al obtener los hoteles.');
+            mensajeError('Se ha producido un error al obtener los habitaciones.');
         }
     }
 }
