@@ -14,11 +14,11 @@
         <?php include $_SERVER['DOCUMENT_ROOT'].'/Booking_Hotels/templates/headerStyle.php'; ?>
         <h1 class="text-center mb-5">Reservas</h1>
             <?php
-                session_start();
-                include '../frontcontroller.php';
+               // session_start();
+               // include '../frontcontroller.php';
             ?>
             <!-- MENÚ DE NAVEGACIÓN -->
-            <!--<div class="list-group">
+            <div class="list-group">
                 <button type="button" class="list-group-item list-group-item-action"><a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample"> <strong>Hotel Madrid Luxary</strong> </a>  </button>
                 <div class="collapse" id="collapseExample1">
                     <table border="1" class="w-100 text-center">

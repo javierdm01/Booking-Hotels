@@ -32,7 +32,7 @@
             <a class="nav-link" href="./mostrarHoteles.php?controller=HabitacionHotel&action=mostrarTabla">Hoteles</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="./mostrarReservas.php?controller=ReservaHotelHabitacionUsuario&action=mostrarReservas">Reservas</a>
+            <a class="nav-link" href="./mostrarReservas.php?controller=Reserva&action=mostrarReservas.php">Reservas</a>
         </li>
       </ul>
       <!-- Left links -->

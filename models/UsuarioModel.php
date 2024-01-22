@@ -126,18 +126,4 @@ class UsuarioModel {
             mensajeError('Se ha producido un error al comprobar usuarios');
         }
     }
-    public function obtenerUsuarios($id){
-        try {
-            $sql = "SELECT * FROM usuarios WHERE id=:idUsuario";
-
-            $stmt = $this->pdo->prepare($sql);
-
-            $stmt->bindParam(':idUsuario', $id);
-            $stmt->setFetchMode( PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'UsuarioModel');
-            $stmt->execute(); 
-            return $stmt->fetchAll();
-        } catch (Exception) {
-            mensajeError('Se ha producido un error al comprobar usuarios');
-        }
-    }
 }

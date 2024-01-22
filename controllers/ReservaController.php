@@ -20,9 +20,6 @@ class ReservaController {
         $this->view = new ReservaView();
     }
     public function mostrarReservas(){
-        $reservas=$this->model->getReservas();
-        for ($i = 0; $i < count($reservas); $i++) {
-            $this->mostrarReservas($reservas[$i]);            
-        }
+        
     }
 }

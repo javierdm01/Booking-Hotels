@@ -1,57 +1,19 @@
 <?php
 
 class ReservaView{
-    function mostrarHotelesReservados($hotel){
-        echo '<div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action"><a class="nav-link text-dark" data-bs-toggle="collapse" href="#'.$hotel->getId().'" role="button" aria-expanded="false" aria-controls="'.$hotel->getId().'"> <strong>'.$hotel->getNombre().'</strong> </a>  </button>
-                ';
-    }
-    function mostrarCabeceraReservas($id){
-        echo '<div class="collapse" id="'.$id.'">
-                    <table border="1" class="w-100 text-center">
-                        <thead class="border border-dark border-bottom">
-                            <tr>
-                                <th>Cod Reserva</th>
-                                <th>Cod Habitación</th>
-                                <th>Tipo Habitación</th>
-                                <th>Descripcion Habitación</th>
-                                <th>Fecha de entrada</th>
-                                <th>Fecha de salida</th>
-                                <th>Precio</th>
-                            </tr>
-                        </thead>
-                        <tbody>';
-    }
-    function mostrarReservas($reserva,$habitacion,$usuarios){
-        echo '
-            <tr>
-                <td>'.$reserva->getId().'</td>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    '.$usuarios->getNombre().'
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button">Action</button>
-                        <button class="dropdown-item" type="button">Another action</button>
-                        <button class="dropdown-item" type="button">Something else here</button>
-                    </div>
-                </div>
-                <td>'.$reserva->getId().'</td>
-                <td>'.$reserva->getId_habitacion().'</td>
-                <td>'.$habitacion->getTipo().'</td>
-                <td>'.$habitacion->getDescripcion().'</td>
-                <td>'.$reserva->getFecha_entrada().'</td>
-                <td>'.$reserva->getFecha_salida().'</td>
-                <td>'.$habitacion->getPrecio().' €</td>
-            </tr>
-        ';
-    }
-    function terminarHotelesReservados(){
-        
-        echo '</tbody>
-                    </table>
-
-                </div>
-                </div>';
+    function verReservas(){
+        echo '<p class="d-inline-flex gap-1">
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Link with href
+            </a>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Button with data-bs-target
+            </button>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+            </div>
+          </div>';
     }
 }
